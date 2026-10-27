@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="web_portfolio_dev.PortfolioGame">
+        <div class="portfolio-game">
+            <div class="portfolio-game__label">
+                ODOO DEVELOPER · SOFTWARE DEVELOPER
+            </div>
+
+            <main class="portfolio-game__content">
+                <h1>
+                    I build and customize
+                    <span>Odoo systems</span>
+                    for real businesses.
+                </h1>
+
+                <p class="portfolio-game__description">
+                    Over four years transforming complex workflows into useful
+                    software. Based in Argentina, working worldwide.
+                </p>
+
+                <p class="portfolio-game__status" aria-live="polite">
+                    <t t-if="state.score &lt; orbs.length">
+                        Orbs collected:
+                        <t t-esc="state.score"/>/<t t-esc="orbs.length"/>
+                    </t>
+                    <t t-else="">All orbs collected! Let’s build something useful.</t>
+                </p>
+
+                <div class="portfolio-game__hint">
+                    Move with arrow keys or WASD
+                </div>
+                <button class="portfolio-game__restart"
+                        type="button"
+                        t-on-click="restart">
+                    Restart game
+                </button>
+            </main>
+
+            <div class="portfolio-game__arena" t-ref="arena">
+                <div class="portfolio-game__player"
+                     t-ref="player"
+                     t-att-style="playerStyle"
+                     aria-label="Player">
+                    <span/>
+                </div>
+
+                <t t-foreach="orbs" t-as="orb" t-key="orb.id">
+                    <div t-if="!state.collected.includes(orb.id)"
+                         class="portfolio-game__orb"
+                         t-att-style="orb.style"/>
+                </t>
+            </div>
+
+            <div class="portfolio-game__arrows" aria-hidden="true">
+                <span>↑</span><span>←</span><span>↓</span><span>→</span>
+            </div>
+        </div>
+    </t>
+</templates>

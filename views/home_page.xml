@@ -1,0 +1,7 @@
+<odoo>
+    <template id="portfolio_home_page" name="Portfolio Game" page="True">
+        <t t-call="website.layout">
+            <owl-component name="web_portfolio_dev.PortfolioGame"/>
+        </t>
+    </template>
+</odoo>

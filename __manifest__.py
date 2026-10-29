@@ -1,6 +1,6 @@
 {
     'name': 'Porfolio dev',
-    'version': '19.0',
+    'version': '19.0.0',
     'summary': 'Porfolio dev',
 
     'category': 'Customization',

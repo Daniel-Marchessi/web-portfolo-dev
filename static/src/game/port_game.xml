@@ -2,38 +2,59 @@
 <templates xml:space="preserve">
     <t t-name="web_portfolio_dev.PortfolioGame">
         <div class="portfolio-game">
-            <div class="portfolio-game__label">
-                ODOO DEVELOPER · SOFTWARE DEVELOPER
-            </div>
+
 
             <main class="portfolio-game__content">
-                <h1>
-                    I build and customize
-                    <span>Odoo systems</span>
-                    for real businesses.
-                </h1>
+                <div class="portfolio-game__cols">
+                    <div class="portfolio-game__col portfolio-game__col--text">
+                        <p class="portfolio-game__available">
+                            <i/>
+                            Available for new opportunities
+                        </p>
 
-                <p class="portfolio-game__description">
-                    Over four years transforming complex workflows into useful
-                    software. Based in Argentina, working worldwide.
-                </p>
+                        <h1>
+                            Daniel Marchessi
+                            <span>Odoo Developer</span>
+                        </h1>
 
-                <p class="portfolio-game__status" aria-live="polite">
-                    <t t-if="state.score &lt; orbs.length">
-                        Orbs collected:
-                        <t t-esc="state.score"/>/<t t-esc="orbs.length"/>
-                    </t>
-                    <t t-else="">All orbs collected! Let’s build something useful.</t>
-                </p>
+                        <p class="portfolio-game__description">
+I build business software, custom Odoo modules, and integrations that turn complex requirements into practical solutions.                        </p>
+                    </div>
 
-                <div class="portfolio-game__hint">
-                    Move with arrow keys or WASD
+                    <div class="portfolio-game__col portfolio-game__col--info">
+                        <p class="portfolio-game__label">What I do</p>
+                        <ul class="portfolio-game__list">
+                            <li>Custom Odoo modules</li>
+                            <li>Integrations and APIs</li>
+                            <li>Website and portals</li>
+                            <li>Workflow automation</li>
+                        </ul>
+
+                        <div class="portfolio-game__stats">
+                            <div><strong>4+</strong>
+                                <span>Years of experience</span>
+                                <span>Based in Argentina · Working worldwide</span>
+
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
-                <button class="portfolio-game__restart"
-                        type="button"
-                        t-on-click="restart">
-                    Restart game
-                </button>
+
+                <div class="portfolio-game__footer">
+                    <span class="portfolio-game__status" aria-live="polite">
+                        <t t-if="state.score &lt; orbs.length">
+                            Orbs: <t t-out="state.score"/>/
+                            <t t-out="orbs.length"/>
+                        </t>
+                        <t t-else="">All orbs collected!</t>
+                    </span>
+                    <span class="portfolio-game__hint">Arrow keys or WASD</span>
+                    <button class="portfolio-game__restart" type="button" t-on-click="restart">
+                        Restart game
+                    </button>
+                </div>
             </main>
 
             <div class="portfolio-game__arena" t-ref="arena">
@@ -51,9 +72,72 @@
                 </t>
             </div>
 
-            <div class="portfolio-game__arrows" aria-hidden="true">
-                <span>↑</span><span>←</span><span>↓</span><span>→</span>
-            </div>
+
+
+
         </div>
+
+        <!-- exp section -->
+        <section class="portfolio-exp" id="experience">
+                <h3 class="portfolio-exp__title">Experience</h3>
+
+            <t t-foreach="experience" t-as="job" t-key="job_index">
+                    <article class="portfolio-exp__item">
+                        <h4 class="portfolio-exp__company" t-out="job.company"/>
+
+                        <div class="portfolio-exp__role">
+                            <p class="portfolio-exp__position" t-out="job.role"/>
+                            <p class="portfolio-exp__period" t-out="job.period"/>
+                        </div>
+
+                        <div class="portfolio-exp__details">
+                            <p class="portfolio-exp__description" t-out="job.description"/>
+                            <p class="portfolio-exp__location" t-out="job.location"/>
+                        </div>
+                    </article>
+                </t>
+            </section>
+
+        <section class="portfolio-projects" id="projects">
+            <h2 class="portfolio-projects__title">Projects</h2>
+
+            <div class="portfolio-projects__grid">
+                <t t-foreach="projects" t-as="project" t-key="project.id">
+                    <article class="portfolio-projects__card">
+                        <div class="portfolio-projects__head">
+                            <h3 class="portfolio-projects__name">
+                                <i class="portfolio-projects__dot"/>
+                                <t t-out="project.name"/>
+                            </h3>
+                            <span t-if="project.status"
+                                  class="portfolio-projects__badge"
+                                  t-out="project.status"/>
+                        </div>
+
+                        <p class="portfolio-projects__lang">
+                            <i t-att-style="'background:' + project.langColor"/>
+                            <t t-out="project.language"/>
+                        </p>
+
+                        <p class="portfolio-projects__description" t-out="project.description"/>
+
+                        <ul class="portfolio-projects__tags">
+                            <t t-foreach="project.tags" t-as="tag" t-key="tag">
+                                <li t-out="tag"/>
+                            </t>
+                        </ul>
+
+                        <a t-if="project.url"
+                           class="portfolio-projects__link"
+                           t-att-href="project.url"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            View project →
+                        </a>
+                    </article>
+                </t>
+            </div>
+        </section>
+
     </t>
 </templates>
